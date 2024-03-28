@@ -19,12 +19,12 @@ export class AuthService {
 
   private generateAccessToken(sub: string) {
     return jwt.sign({ sub }, process.env.JWT_SECRET ?? "", {
-      expiresIn: Number(process.env.JWT_SIGN_EXPIRES_IN),
+      expiresIn: process.env.JWT_SIGN_EXPIRES_IN,
     });
   }
 
   public async signup(data: SignUpDto) {
-    const userWithEmailFromDb = await this.usersRepository.findOne(data.email);
+    const userWithEmailFromDb = await this.usersRepository.findOne({email: data.email});
 
     if (userWithEmailFromDb) {
       // Lançar erro no contexto do koa e adicionar descrição
@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   public async signin(data: SignInDto) {
-    const user = await this.usersRepository.findOne(data.email);
+    const user = await this.usersRepository.findOne({email: data.email});
 
     if (!user) {
       // Lançar erro no contexto do koa e adicionar descrição

@@ -1,5 +1,5 @@
 {
-  "name": "test-back",
+  "name": "pennywise-api",
   "module": "index.ts",
   "type": "module",
   "scripts": {

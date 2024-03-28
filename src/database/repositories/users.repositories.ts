@@ -8,7 +8,7 @@ import { User } from "../entities/users.entity";
 export class UsersRepository {
   constructor(
     @Inject(MIKRO_ORM_ENTITY_MANAGER_TOKEN)
-    private readonly orm: MikroORM<PostgreSqlDriver>
+    private readonly orm: MikroORM<PostgreSqlDriver>,
   ) {}
 
   @EnsureRequestContext()
@@ -24,9 +24,11 @@ export class UsersRepository {
   }
 
   @EnsureRequestContext()
-  public async findOne(email: string): Promise<User | null> {
+  public async findOne(
+    data: { email: string } | { id: string },
+  ): Promise<User | null> {
     const user = await this.orm.em.getRepository(User).findOne({
-      email,
+      ...data,
     });
 
     return user;
