@@ -19,7 +19,7 @@ export class AuthService {
 
   private generateAccessToken(sub: string) {
     return jwt.sign({ sub }, process.env.JWT_SECRET ?? "", {
-      expiresIn: Number(process.env.JWT_SIGN_EXPIRES_IN),
+      expiresIn: process.env.JWT_SIGN_EXPIRES_IN,
     });
   }
 
