@@ -8,7 +8,7 @@ import {
 import { BaseEntity } from "../base.entity";
 import { Company } from "./companies.entity";
 
-enum TransactionTypeEnum {
+export enum TransactionTypeEnum {
   INCOME = 'income',
   EXPENSE = 'expense'
 }
