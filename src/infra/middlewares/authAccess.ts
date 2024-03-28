@@ -14,7 +14,7 @@ export const authAccessMiddleware: Middleware = async (ctx, next) => {
 
   try {
     const decoded = await verifyAccessToken(token as string);
-    ctx.state.userId = decoded;
+    ctx.state.userId = typeof decoded === "string" ? decoded : decoded?.sub;
 
     return next();
   } catch (err) {
