@@ -17,7 +17,7 @@ export enum TransactionTypeEnum {
   tableName: "transactions",
 })
 export class Transaction extends BaseEntity {
-  @Property()
+  @Property({ nullable: true })
   description?: string | null;
 
   @Property()

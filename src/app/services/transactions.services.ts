@@ -7,10 +7,10 @@ type CreateDto = {
   description?: string | null;
   amount: number;
   date: Date;
-  id: string;
+  companyId: string;
 };
 
-type UpdateDto = Partial<Transaction> & { companyId: string; };
+type UpdateDto = Partial<Transaction>;
 
 @Service()
 export class TransactionsServices {
