@@ -5,7 +5,7 @@ const router = new Router();
 
 router.post("/", companyController.create);
 router.patch("/", companyController.associateToUser);
-router.get("/user/:p", companyController.getAllFromUser)
-router.get("/:identifier", companyController.findOne);
+router.get("/user", companyController.getAllFromUser)
+router.get("/identifier/:identifier", companyController.findOne);
 
 export { router as companyRouter };
