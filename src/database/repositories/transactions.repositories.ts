@@ -19,12 +19,12 @@ export class TransactionsRepository {
     description?: string | null;
     amount: number;
     date: Date;
-    id: string;
+    companyId: string;
   }) {
     const transaction = new Transaction();
 
     const company = await this.orm.em.getRepository(Company).findOne({
-      id: data.id,
+      id: data.companyId,
     });
 
     transaction.amount = data.amount;
@@ -42,11 +42,9 @@ export class TransactionsRepository {
   }
 
   @EnsureRequestContext()
-  public async update(data: Partial<Transaction> & { companyId: string; }): Promise<Transaction> {
+  public async update(data: Partial<Transaction>): Promise<Transaction> {
     const transaction = await this.orm.em.getRepository(Transaction).findOne({
-      company: {
-        id: data.companyId,
-      },
+      id: data.id
     });
 
     if (!transaction) {
