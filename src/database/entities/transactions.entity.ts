@@ -1,16 +1,10 @@
-import {
-  Entity,
-  Enum,
-  ManyToOne,
-  Property,
-  type Rel,
-} from "@mikro-orm/core";
+import { Entity, Enum, ManyToOne, Property, type Rel } from "@mikro-orm/core";
 import { BaseEntity } from "../base.entity";
 import { Company } from "./companies.entity";
 
 export enum TransactionTypeEnum {
-  INCOME = 'income',
-  EXPENSE = 'expense'
+  INCOME = "income",
+  EXPENSE = "expense",
 }
 
 @Entity({
