@@ -1,23 +1,13 @@
-import Router from "@koa/router";
 import { authRouter } from "./auth.routes";
 import { companyRouter } from "./companies.routes";
 import { authAccessMiddleware } from "../../infra/middlewares/authAccess";
 import { transactionRouter } from "./transactions.routes";
+import KoaJoiRouter from "@koa-better-modules/joi-router";
 
-const router = new Router();
+const router = new KoaJoiRouter();
 
-router.use("/auth", authRouter.routes(), authRouter.allowedMethods());
-router.use(
-  "/companies",
-  authAccessMiddleware,
-  companyRouter.routes(),
-  companyRouter.allowedMethods(),
-);
-router.use(
-  "/transactions",
-  authAccessMiddleware,
-  transactionRouter.routes(),
-  transactionRouter.allowedMethods(),
-)
+router.use(authRouter.middleware());
+router.use(authAccessMiddleware, companyRouter.middleware());
+router.use(authAccessMiddleware, transactionRouter.middleware());
 
 export { router };

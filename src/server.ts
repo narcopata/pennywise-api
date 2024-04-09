@@ -19,7 +19,7 @@ server.use(
 
 server.use(koaBody());
 
-server.use(router.routes()).use(router.allowedMethods());
+server.use(router.middleware());
 
 server.listen(PORT, () => {
   console.log("Server running on port " + "\x1b[36m" + PORT + "\x1b[0m");
