@@ -1,7 +1,5 @@
 {
-  "namespaces": [
-    "public"
-  ],
+  "namespaces": ["public"],
   "name": "public",
   "tables": [
     {
@@ -68,9 +66,7 @@
       "schema": "public",
       "indexes": [
         {
-          "columnNames": [
-            "identifier"
-          ],
+          "columnNames": ["identifier"],
           "composite": false,
           "keyName": "companies_identifier_unique",
           "constraint": true,
@@ -79,9 +75,7 @@
         },
         {
           "keyName": "companies_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -148,10 +142,7 @@
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "enumItems": [
-            "income",
-            "expense"
-          ],
+          "enumItems": ["income", "expense"],
           "mappedType": "enum"
         },
         "date": {
@@ -179,9 +170,7 @@
       "indexes": [
         {
           "keyName": "transactions_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -192,13 +181,9 @@
       "foreignKeys": {
         "transactions_company_id_foreign": {
           "constraintName": "transactions_company_id_foreign",
-          "columnNames": [
-            "company_id"
-          ],
+          "columnNames": ["company_id"],
           "localTableName": "public.transactions",
-          "referencedColumnNames": [
-            "id"
-          ],
+          "referencedColumnNames": ["id"],
           "referencedTableName": "public.companies",
           "updateRule": "cascade"
         }
@@ -259,9 +244,7 @@
       "schema": "public",
       "indexes": [
         {
-          "columnNames": [
-            "email"
-          ],
+          "columnNames": ["email"],
           "composite": false,
           "keyName": "users_email_unique",
           "constraint": true,
@@ -270,9 +253,7 @@
         },
         {
           "keyName": "users_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -309,10 +290,7 @@
       "indexes": [
         {
           "keyName": "users_companies_pkey",
-          "columnNames": [
-            "user_id",
-            "company_id"
-          ],
+          "columnNames": ["user_id", "company_id"],
           "composite": true,
           "constraint": true,
           "primary": true,
@@ -323,26 +301,18 @@
       "foreignKeys": {
         "users_companies_user_id_foreign": {
           "constraintName": "users_companies_user_id_foreign",
-          "columnNames": [
-            "user_id"
-          ],
+          "columnNames": ["user_id"],
           "localTableName": "public.users_companies",
-          "referencedColumnNames": [
-            "id"
-          ],
+          "referencedColumnNames": ["id"],
           "referencedTableName": "public.users",
           "deleteRule": "cascade",
           "updateRule": "cascade"
         },
         "users_companies_company_id_foreign": {
           "constraintName": "users_companies_company_id_foreign",
-          "columnNames": [
-            "company_id"
-          ],
+          "columnNames": ["company_id"],
           "localTableName": "public.users_companies",
-          "referencedColumnNames": [
-            "id"
-          ],
+          "referencedColumnNames": ["id"],
           "referencedTableName": "public.companies",
           "deleteRule": "cascade",
           "updateRule": "cascade"

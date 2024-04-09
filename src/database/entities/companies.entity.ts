@@ -28,6 +28,9 @@ export class Company extends BaseEntity {
   @Property()
   currentBalance: number = 0;
 
-  @OneToMany(() => Transaction, transaction => transaction.company)
+  @OneToMany(
+    () => Transaction,
+    (transaction) => transaction.company,
+  )
   transactions = new Collection<Transaction>(this);
 }

@@ -18,14 +18,17 @@ export const companyController: CompanyControllerType = {
     await companyService.associateToUser(ctx.state.userId, data.identifier);
 
     ctx.status = 201;
-    ctx.body = ""    
+    ctx.body = "";
   },
   create: async (ctx) => {
     const data = ctx.request.body;
 
     const companiesService = Container.get(CompaniesServices);
 
-    const company = await companiesService.create({...data, userId: ctx.state.userId });
+    const company = await companiesService.create({
+      ...data,
+      userId: ctx.state.userId,
+    });
 
     ctx.body = company;
   },
@@ -38,7 +41,7 @@ export const companyController: CompanyControllerType = {
 
     ctx.body = company;
   },
-  getAllFromUser: async (ctx) => {   
+  getAllFromUser: async (ctx) => {
     const companiesService = Container.get(CompaniesServices);
 
     const companies = await companiesService.getAllFromUser(ctx.state.userId);

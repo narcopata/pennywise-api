@@ -24,7 +24,9 @@ export class AuthService {
   }
 
   public async signup(data: SignUpDto) {
-    const userWithEmailFromDb = await this.usersRepository.findOne({email: data.email});
+    const userWithEmailFromDb = await this.usersRepository.findOne({
+      email: data.email,
+    });
 
     if (userWithEmailFromDb) {
       // Lançar erro no contexto do koa e adicionar descrição
@@ -44,7 +46,7 @@ export class AuthService {
   }
 
   public async signin(data: SignInDto) {
-    const user = await this.usersRepository.findOne({email: data.email});
+    const user = await this.usersRepository.findOne({ email: data.email });
 
     if (!user) {
       // Lançar erro no contexto do koa e adicionar descrição

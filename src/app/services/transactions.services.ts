@@ -1,6 +1,9 @@
 import { Service } from "typedi";
 import { TransactionsRepository } from "../../database/repositories/transactions.repositories";
-import { Transaction, TransactionTypeEnum } from "../../database/entities/transactions.entity";
+import {
+  Transaction,
+  TransactionTypeEnum,
+} from "../../database/entities/transactions.entity";
 
 type CreateDto = {
   type: TransactionTypeEnum;
@@ -14,7 +17,9 @@ type UpdateDto = Partial<Transaction>;
 
 @Service()
 export class TransactionsServices {
-  constructor(private readonly transactionsRepository: TransactionsRepository) {}
+  constructor(
+    private readonly transactionsRepository: TransactionsRepository,
+  ) {}
 
   public async create(data: CreateDto): Promise<Transaction> {
     const transaction = await this.transactionsRepository.create(data);
@@ -23,14 +28,13 @@ export class TransactionsServices {
   }
 
   public async getAllFromCompany(companyId: string): Promise<Transaction[]> {
-    const companies = await this.transactionsRepository.findAllFromCompany(companyId);
+    const companies =
+      await this.transactionsRepository.findAllFromCompany(companyId);
 
     return companies;
   }
 
-  public async delete(
-    transactionId: string,
-  ): Promise<void> {
+  public async delete(transactionId: string): Promise<void> {
     await this.transactionsRepository.delete(transactionId);
   }
 

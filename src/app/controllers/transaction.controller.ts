@@ -27,14 +27,15 @@ export const transactionController: TransactionControllerType = {
     await transactionsServices.delete(transactionId);
 
     ctx.status = 204;
-    ctx.body = '';
+    ctx.body = "";
   },
   getAllFromCompany: async (ctx) => {
     const companyId = ctx.params.companyId as string;
-    
+
     const transactionsServices = Container.get(TransactionsServices);
 
-    const transactions = await transactionsServices.getAllFromCompany(companyId);
+    const transactions =
+      await transactionsServices.getAllFromCompany(companyId);
 
     ctx.body = transactions;
   },
@@ -46,5 +47,5 @@ export const transactionController: TransactionControllerType = {
     const updatedTransaction = await transactionsServices.update(data);
 
     ctx.body = updatedTransaction;
-  }
+  },
 };

@@ -4,7 +4,10 @@ import { EnsureRequestContext, type MikroORM } from "@mikro-orm/core";
 import type { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Company } from "../entities/companies.entity";
 import { User } from "../entities/users.entity";
-import { TransactionTypeEnum, Transaction } from "../entities/transactions.entity";
+import {
+  TransactionTypeEnum,
+  Transaction,
+} from "../entities/transactions.entity";
 
 @Service()
 export class TransactionsRepository {
@@ -31,7 +34,7 @@ export class TransactionsRepository {
     transaction.date = data.date;
     transaction.description = data.description;
     transaction.type = data.type;
-    
+
     company && (transaction.company = company);
 
     this.orm.em.persist(transaction);
@@ -44,11 +47,11 @@ export class TransactionsRepository {
   @EnsureRequestContext()
   public async update(data: Partial<Transaction>): Promise<Transaction> {
     const transaction = await this.orm.em.getRepository(Transaction).findOne({
-      id: data.id
+      id: data.id,
     });
 
     if (!transaction) {
-      throw new Error("")
+      throw new Error("");
     }
 
     Object.assign(transaction, data);
@@ -64,7 +67,7 @@ export class TransactionsRepository {
       id: transactionId,
     });
 
-    transaction && await this.orm.em.removeAndFlush(transaction);
+    transaction && (await this.orm.em.removeAndFlush(transaction));
   }
 
   @EnsureRequestContext()
@@ -72,12 +75,11 @@ export class TransactionsRepository {
     const transactions = await this.orm.em.getRepository(Transaction).findAll({
       where: {
         company: {
-          id: companyId
-        }
-      }
+          id: companyId,
+        },
+      },
     });
 
     return transactions;
   }
 }
-
