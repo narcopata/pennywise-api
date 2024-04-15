@@ -3,11 +3,10 @@ import { MIKRO_ORM_ENTITY_MANAGER_TOKEN } from "../../infra/container";
 import { EnsureRequestContext, type MikroORM } from "@mikro-orm/core";
 import type { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Company } from "../entities/companies.entity";
-import { User } from "../entities/users.entity";
 import {
-  TransactionTypeEnum,
   Transaction,
 } from "../entities/transactions.entity";
+import type { TransactionTypeEnum } from "~app/enums/TransactionTypeEnum";
 
 @Service()
 export class TransactionsRepository {

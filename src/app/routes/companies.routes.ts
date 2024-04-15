@@ -1,5 +1,6 @@
 import KoaJoiRouter, { Joi } from "@koa-better-modules/joi-router";
 import { companyController } from "~app/controllers/company.controller";
+import { TransactionTypeEnum } from "~app/enums/TransactionTypeEnum";
 
 const router = new KoaJoiRouter();
 
@@ -34,6 +35,13 @@ router.route({
   method: "get",
   path: "/user",
   handler: companyController.getAllFromUser,
+  validate: {
+    query: {
+      transactionType: Joi.string()
+        .optional()
+        .valid(...Object.values(TransactionTypeEnum)),
+    },
+  },
 });
 
 router.route({

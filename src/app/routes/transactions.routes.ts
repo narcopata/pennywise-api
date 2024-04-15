@@ -1,6 +1,7 @@
 import KoaJoiRouter, { Joi } from "@koa-better-modules/joi-router";
 import { transactionController } from "~app/controllers/transaction.controller";
-import { TransactionTypeEnum } from "../../database/entities/transactions.entity";
+import { TransactionTypeEnum } from "~app/enums/TransactionTypeEnum";
+
 
 const router = new KoaJoiRouter();
 

@@ -1,5 +1,6 @@
 import type Router from "@koa/router";
 import Container from "typedi";
+import type { TransactionTypeEnum } from "~app/enums/TransactionTypeEnum";
 import { CompaniesServices } from "~app/services/companies.services";
 
 type CompanyControllerType = {
@@ -44,7 +45,10 @@ export const companyController: CompanyControllerType = {
   getAllFromUser: async (ctx) => {
     const companiesService = Container.get(CompaniesServices);
 
-    const companies = await companiesService.getAllFromUser(ctx.state.userId);
+    const companies = await companiesService.getAllFromUser(
+      ctx.state.userId,
+      ctx.query.transactionType as TransactionTypeEnum | undefined,
+    );
 
     ctx.body = companies;
     ctx.status = 200;

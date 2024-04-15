@@ -1,6 +1,7 @@
 import { Service } from "typedi";
 import { CompaniesRepository } from "../../database/repositories/companies.repositories";
 import { Company } from "../../database/entities/companies.entity";
+import type { TransactionTypeEnum } from "~app/enums/TransactionTypeEnum";
 
 type CreateDto = {
   name: string;
@@ -27,8 +28,14 @@ export class CompaniesServices {
     return company;
   }
 
-  public async getAllFromUser(userId: string): Promise<Company[]> {
-    const companies = await this.companiesRepository.findAllFromUser(userId);
+  public async getAllFromUser(
+    userId: string,
+    transactionType?: TransactionTypeEnum,
+  ): Promise<Company[]> {
+    const companies = await this.companiesRepository.findAllFromUser(
+      userId,
+      transactionType,
+    );
 
     return companies;
   }
