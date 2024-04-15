@@ -2,8 +2,8 @@ import { Service } from "typedi";
 import { TransactionsRepository } from "../../database/repositories/transactions.repositories";
 import {
   Transaction,
-  TransactionTypeEnum,
 } from "../../database/entities/transactions.entity";
+import type { TransactionTypeEnum } from "~app/enums/TransactionTypeEnum";
 
 type CreateDto = {
   type: TransactionTypeEnum;
