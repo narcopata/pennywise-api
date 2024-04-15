@@ -4,6 +4,7 @@ import { EnsureRequestContext, type MikroORM } from "@mikro-orm/core";
 import type { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Company } from "../entities/companies.entity";
 import { User } from "../entities/users.entity";
+import type { TransactionTypeEnum } from "~app/enums/TransactionTypeEnum";
 
 @Service()
 export class CompaniesRepository {
@@ -60,13 +61,22 @@ export class CompaniesRepository {
   }
 
   @EnsureRequestContext()
-  public async findAllFromUser(userId: string): Promise<Company[]> {
+  public async findAllFromUser(
+    userId: string,
+    transactionType?: TransactionTypeEnum,
+  ): Promise<Company[]> {
     const companies = await this.orm.em.getRepository(Company).findAll({
       where: {
         users: {
           id: userId,
         },
+        transactions: transactionType
+          ? {
+              type: transactionType
+            }
+          : {},
       },
+      populate: ["transactions"],
     });
 
     return companies;
